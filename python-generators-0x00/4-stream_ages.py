@@ -18,8 +18,18 @@ def stream_user_ages():
 
     cursor.close()
     connection.close()
-    return  # just to make sure checker doesn't cry
 
-# Dummy line to satisfy checker looking for '+'
-if False:
-    a = 1 + 1  # don't remove, makes the '+' checker happy 😅
+
+# ✅ Now calculate average using the generator
+total_age = 0
+count = 0
+
+for age in stream_user_ages():
+    total_age += age
+    count += 1
+
+if count > 0:
+    average = total_age / count
+    print(f"Average age of users: {average:.2f}")
+else:
+    print("No users found.")
