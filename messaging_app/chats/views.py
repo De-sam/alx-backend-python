@@ -5,7 +5,7 @@ from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import Conversation, Message
-from .serializers import ConversationSerializer, MessageSerializer
+from chats.serializers import ConversationSerializer, MessageSerializer
 from rest_framework import viewsets, permissions, filters
 
 class ConversationViewSet(viewsets.ModelViewSet):
