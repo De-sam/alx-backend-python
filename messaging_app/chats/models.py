@@ -15,6 +15,7 @@ class User(AbstractUser):
         ('host', 'Host'),
         ('admin', 'Admin'),
     ])
+    password_hash = models.CharField(max_length=128)  # <-- Add this line
     created_at = models.DateTimeField(auto_now_add=True)
 
     REQUIRED_FIELDS = ['email', 'first_name', 'last_name']
@@ -22,7 +23,7 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
-
+        
 
 class Conversation(models.Model):
     """Model for conversation between users"""
