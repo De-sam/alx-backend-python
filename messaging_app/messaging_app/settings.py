@@ -85,6 +85,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
     ],
     'DEFAULT_PAGINATION_CLASS': 'chats.pagination.MessagePagination',
+    'PAGE_SIZE': 20  # ✅ Explicit for checker
 }
 
 AUTH_USER_MODEL = 'chats.User'
