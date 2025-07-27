@@ -5,10 +5,13 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.exceptions import PermissionDenied
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Conversation, Message
 from chats.serializers import ConversationSerializer, MessageSerializer
 from chats.permissions import IsParticipantOfConversation
+from chats.filters import MessageFilter
+from chats.pagination import MessagePagination
 
 
 class ConversationViewSet(viewsets.ModelViewSet):
@@ -40,6 +43,9 @@ class MessageViewSet(viewsets.ModelViewSet):
     """ViewSet for managing messages"""
     serializer_class = MessageSerializer
     permission_classes = [permissions.IsAuthenticated, IsParticipantOfConversation]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = MessageFilter
+    pagination_class = MessagePagination
 
     def get_queryset(self):
         """Only return messages from conversations the user participates in"""
