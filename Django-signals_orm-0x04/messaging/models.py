@@ -228,6 +228,17 @@ class Notification(models.Model):
         return f"Notification for {self.user} on message {self.message_id}"
 
 
+class UnreadMessagesManager(models.Manager):
+    """
+    Custom manager to retrieve unread messages for a specific user.
+    """
+
+    def for_user(self, user):
+        return self.get_queryset().filter(receiver=user, read=False).only(
+            'message_id', 'sender', 'receiver', 'content', 'timestamp'
+        )
+
+
 class MessageHistory(models.Model):
     """
     This model stores the previous versions of edited messages.
