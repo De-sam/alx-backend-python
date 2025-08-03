@@ -234,3 +234,27 @@ class Notification(models.Model):
 
     def __str__(self):
         return f"Notification for {self.user} on message {self.message_id}"
+
+
+class MessageHistory(models.Model):
+    """
+    This model stores the previous versions of edited messages.
+    
+    Fields:
+        history_id (int): Primary key for the history record.
+        message (Message): The message that was edited.
+        old_content (str): The content before the edit.
+        edited_at (datetime): Timestamp of the edit.
+    """
+    history_id = models.AutoField(primary_key=True)
+    message = models.ForeignKey(
+        Message,
+        on_delete=models.CASCADE,
+        related_name='history',
+        help_text=_("The message that was edited"),
+    )
+    old_content = models.TextField(help_text=_("The content before the edit"))
+    edited_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"History of Message {self.message_id} at {self.edited_at}"
