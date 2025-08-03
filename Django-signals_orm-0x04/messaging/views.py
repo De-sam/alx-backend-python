@@ -217,12 +217,18 @@ class MessageViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """
-        Filter the queryset by the user's conversations
+        Filter the queryset by the user's conversations.
+        Optimize with select_related and prefetch_related for threaded messages.
         """
         user = self.request.user
         if user.is_authenticated:
             user_conversation = Conversation.objects.filter(participants=user)
-            return Message.objects.filter(conversation__in=user_conversation)
+            return (
+                Message.objects
+                .filter(conversation__in=user_conversation)
+                .select_related("sender", "receiver", "parent_message")
+                .prefetch_related("replies")
+            )
         return Message.objects.none()
 
 

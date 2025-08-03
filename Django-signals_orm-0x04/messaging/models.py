@@ -54,56 +54,30 @@ class Message(models.Model):
         timestamp (datetime): When the message was sent.
         edited (bool): Whether the message has been edited.
         edited_by (User): The user who edited the message.
+        parent_message (Message): The message this one is replying to.
     """
 
     message_id = models.AutoField(primary_key=True)
-    sender = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="sent_messages",
-        help_text=_("The user who sends the message"),
-    )
-    receiver = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="received_messages",
-        help_text=_("The user who receives the message"),
-    )
-    content = models.TextField(
-        null=False,
-        blank=False,
-        help_text=_("The body of the message"),
-    )
-    status = models.CharField(
-        max_length=20,
-        choices=MessageStatus.choices,
-        default=MessageStatus.PENDING,
-        help_text=_("The delivery status of the message"),
-    )
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="sent_messages")
+    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="received_messages")
+    content = models.TextField()
+    status = models.CharField(max_length=20, choices=MessageStatus.choices, default=MessageStatus.PENDING)
     timestamp = models.DateTimeField(auto_now_add=True)
-    edited = models.BooleanField(
-        default=False,
-        help_text=_("Indicates whether the message has been edited"),
-    )
-    edited_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.SET_NULL,
+    edited = models.BooleanField(default=False)
+    edited_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name="edited_messages")
+
+    # 👇 New field for threaded replies
+    parent_message = models.ForeignKey(
+        'self',
         null=True,
         blank=True,
-        related_name="edited_messages",
-        help_text=_("The user who last edited the message"),
+        on_delete=models.CASCADE,
+        related_name='replies',
+        help_text=_("The parent message this is replying to")
     )
 
     class Meta:
-        verbose_name = _("message")
-        verbose_name_plural = _("messages")
         ordering = ["-timestamp"]
-        constraints = [
-            models.UniqueConstraint(fields=["message_id"], name="unique_message_id")
-        ]
-
-    def __str__(self):
-        return f"Message {self.message_id} from {self.sender} to {self.receiver}"
 
 
 class Conversation(models.Model):
