@@ -43,9 +43,17 @@ class MessageStatus(models.TextChoices):
 
 class Message(models.Model):
     """
-    This model is used to store the message details, including the sender,
-    receiver, content, and timestamp of when the message was sent.
-    edited (bool): Whether the message was edited after being sent.
+    This model stores the details of messages sent between users.
+
+    Fields:
+        message_id (int): Primary key for each message.
+        sender (User): The user who sends the message.
+        receiver (User): The user who receives the message.
+        content (str): The body of the message.
+        status (str): Delivery status (Pending, Sent, etc.).
+        timestamp (datetime): When the message was sent.
+        edited (bool): Whether the message has been edited.
+        edited_by (User): The user who edited the message.
     """
 
     message_id = models.AutoField(primary_key=True)
@@ -53,7 +61,7 @@ class Message(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="sent_messages",
-        help_text=_("The user who sent the message"),
+        help_text=_("The user who sends the message"),
     )
     receiver = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -64,22 +72,26 @@ class Message(models.Model):
     content = models.TextField(
         null=False,
         blank=False,
-        help_text=_("The content of the message"),
-    )
-    timestamp = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_("The date and time when the message was sent"),
+        help_text=_("The body of the message"),
     )
     status = models.CharField(
         max_length=20,
         choices=MessageStatus.choices,
         default=MessageStatus.PENDING,
-        help_text=_("The current status of the message (e.g., pending, sent, read)"),
+        help_text=_("The delivery status of the message"),
     )
-
+    timestamp = models.DateTimeField(auto_now_add=True)
     edited = models.BooleanField(
         default=False,
-        help_text=_("Indicates whether the message has been edited")
+        help_text=_("Indicates whether the message has been edited"),
+    )
+    edited_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="edited_messages",
+        help_text=_("The user who last edited the message"),
     )
 
     class Meta:
@@ -91,7 +103,7 @@ class Message(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.sender} -> {self.receiver}: {self.content[:30]}"
+        return f"Message {self.message_id} from {self.sender} to {self.receiver}"
 
 
 class Conversation(models.Model):
