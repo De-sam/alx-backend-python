@@ -63,3 +63,25 @@ def log_message_edit(sender, instance: Message, **kwargs):
             old_content=old_message.content
         )
         instance.edited = True
+
+@receiver(post_delete, sender=User)
+def cleanup_user_related_data(sender, instance: User, **kwargs):
+    """
+    Deletes all messages, notifications, and message histories
+    related to a user when their account is deleted.
+
+    Args:
+        sender (Model class): The model class that sent the signal.
+        instance (User): The user instance being deleted.
+        **kwargs: Additional keyword arguments.
+    """
+
+    # Delete sent and received messages
+    Message.objects.filter(sender=instance).delete()
+    Message.objects.filter(receiver=instance).delete()
+
+    # Delete notifications
+    Notification.objects.filter(user=instance).delete()
+
+    # Delete message history for messages the user sent
+    MessageHistory.objects.filter(message__sender=instance).delete()
