@@ -233,15 +233,13 @@ class MessageViewSet(viewsets.ModelViewSet):
         return Message.objects.none()
     
     @action(detail=False, methods=["get"], url_path="unread")
-    def unread_messages(self, request):
+    def get_unread_messages(self, request):
         """
-        Return unread messages for the current user.
-        Optimized with .only() via custom manager.
+        Return unread messages for the current user using custom manager.
         """
-        unread = Message.unread.for_user(request.user)
+        unread = Message.unread.unread_for_user(request.user)
         serializer = self.get_serializer(unread, many=True)
         return Response(serializer.data)
-
 
 class ChatViewSet(viewsets.ModelViewSet):
     """
