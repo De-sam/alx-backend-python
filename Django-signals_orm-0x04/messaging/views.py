@@ -231,6 +231,16 @@ class MessageViewSet(viewsets.ModelViewSet):
                 .prefetch_related("replies")
             )
         return Message.objects.none()
+    
+    @action(detail=False, methods=["get"], url_path="unread")
+    def unread_messages(self, request):
+        """
+        Return unread messages for the current user.
+        Optimized with .only() via custom manager.
+        """
+        unread = Message.unread.for_user(request.user)
+        serializer = self.get_serializer(unread, many=True)
+        return Response(serializer.data)
 
 
 class ChatViewSet(viewsets.ModelViewSet):
