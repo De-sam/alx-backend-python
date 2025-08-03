@@ -45,6 +45,7 @@ class Message(models.Model):
     """
     This model is used to store the message details, including the sender,
     receiver, content, and timestamp of when the message was sent.
+    edited (bool): Whether the message was edited after being sent.
     """
 
     message_id = models.AutoField(primary_key=True)
@@ -74,6 +75,11 @@ class Message(models.Model):
         choices=MessageStatus.choices,
         default=MessageStatus.PENDING,
         help_text=_("The current status of the message (e.g., pending, sent, read)"),
+    )
+
+    edited = models.BooleanField(
+        default=False,
+        help_text=_("Indicates whether the message has been edited")
     )
 
     class Meta:
