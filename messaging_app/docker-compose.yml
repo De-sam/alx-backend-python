@@ -5,7 +5,7 @@ services:
     build: .
     container_name: messaging-web
     ports:
-      - "8000:8000"     # Host:Container
+      - "8000:8000"
     depends_on:
       - db
     env_file:
@@ -24,3 +24,8 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql   # ✅ PERSIST DB FILES HERE
+
+volumes:
+  mysql_data:                       # ✅ NAMED VOLUME (created by Docker)
