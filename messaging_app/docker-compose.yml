@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    container_name: messaging-web
+    ports:
+      - "8000:8000"     # Host:Container
+    depends_on:
+      - db
+    env_file:
+      - .env
+    command: >
+      python manage.py runserver 0.0.0.0:8000
+
+  db:
+    image: mysql:8
+    container_name: messaging-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
