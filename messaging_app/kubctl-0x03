@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DEPLOY_FILE="messaging_app/blue_deployment.yaml"
+DEPLOY_NAME="messaging-app-blue"
+# Prefer Ingress URL if you configured it in Task 3; fallback to NodePort tunnel
+APP_URL="${APP_URL:-}"
+
+echo "Applying updated deployment from $DEPLOY_FILE..."
+kubectl apply -f "$DEPLOY_FILE"
+
+echo "Watching rollout status for $DEPLOY_NAME..."
+kubectl rollout status deployment "$DEPLOY_NAME" --timeout=5m
+
+# Determine a testable URL
+if [ -z "${APP_URL}" ]; then
+  # Try Ingress first
+  if kubectl get ingress messaging-app-ingress >/dev/null 2>&1; then
+    # Default host we used earlier: messaging.local
+    APP_URL="http://messaging.local/api"
+  else
+    echo "No Ingress detected; using minikube service URL..."
+    # Exposes a temporary tunnel if needed and prints the URL
+    APP_URL="$(minikube service messaging-app-service --url | head -n1)"
+  fi
+fi
+
+echo "Probing for downtime at: $APP_URL"
+echo "Press Ctrl+C to stop probing."
+
+# Simple continuous probe: exit non-zero if any request fails (HTTP >= 400 or timeout)
+# If you want to allow occasional failures without exiting, remove `-f` and handle manually.
+while true; do
+  if curl -fsS --max-time 3 "$APP_URL" >/dev/null; then
+    echo "$(date +%T) OK"
+  else
+    echo "$(date +%T) ❌ request failed"
+    # You can choose to exit 1 here if you want the script to fail on any blip.
+    # exit 1
+  fi
+  sleep 1
+done &
+
+PROBE_PID=$!
+
+# Give it some time to run during the rollout window (optional)
+sleep 15
+
+echo "Current Pods for verification:"
+kubectl get pods -l app=messaging-app,version=blue -o wide
+
+# Stop probe after a short window; remove this block if you want it to keep running
+sleep 15
+kill "$PROBE_PID" >/dev/null 2>&1 || true
+wait "$PROBE_PID" >/dev/null 2>&1 || true
+
+echo "Done. If you saw only 'OK', rollout likely had no visible downtime."
