@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Scale deployment to 3 replicas
+echo "Scaling messaging-app deployment to 3 replicas..."
+kubectl scale deployment messaging-app --replicas=3
+
+# Verify pods
+echo "Checking pods..."
+kubectl get pods -l app=messaging-app
+
+# Load testing using wrk (assumes wrk is installed and service is exposed internally)
+# Replace <service-ip> with the actual ClusterIP or NodePort/Ingress endpoint
+SERVICE_IP=$(minikube service messaging-app-service --url | head -n 1)
+echo "Running wrk load test on $SERVICE_IP..."
+wrk -t2 -c10 -d10s $SERVICE_IP
+
+# Monitor resource usage
+echo "Monitoring resource usage..."
+kubectl top pods
