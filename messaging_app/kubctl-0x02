@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Deploy blue and green versions
+echo "Applying blue and green deployments..."
+kubectl apply -f messaging_app/blue_deployment.yaml
+kubectl apply -f messaging_app/green_deployment.yaml
+kubectl apply -f messaging_app/kubeservice.yaml
+
+# Check status
+echo "Checking deployments..."
+kubectl get deployments
+
+# Check pods
+kubectl get pods -l app=messaging-app
+
+# Tail logs for green version
+GREEN_POD=$(kubectl get pods -l app=messaging-app,version=green -o jsonpath="{.items[0].metadata.name}")
+echo "Showing logs for green pod: $GREEN_POD"
+kubectl logs $GREEN_POD --tail=20
