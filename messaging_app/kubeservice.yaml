@@ -1,21 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: messaging-app-green
+  name: django-app-service
 spec:
-  replicas: 1
   selector:
-    matchLabels:
-      app: messaging-app
-      version: green
-  template:
-    metadata:
-      labels:
-        app: messaging-app
-        version: green
-    spec:
-      containers:
-      - name: messaging-app
-        image: samsoncoded/messaging_app:2.0   # <-- new version
-        ports:
-        - containerPort: 8000
+    app: django-messaging-app
+    version: blue
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+  type: ClusterIP

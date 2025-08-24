@@ -1,0 +1,509 @@
+{
+	"info": {
+		"_postman_id": "dcb2e62c-4116-4f92-b5ff-b0a7957c4e3f",
+		"name": "messaging_app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34296962",
+		"_collection_link": "https://alx-api.postman.co/workspace/Django-Framework~fb067671-a8e5-43f0-96a9-09e34a7563f2/collection/34296962-dcb2e62c-4116-4f92-b5ff-b0a7957c4e3f?action=share&source=collection_link&creator=34296962"
+	},
+	"item": [
+		{
+			"name": "create_conversations",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"addTokenTo": "header",
+						"tokenName": "RSM_token",
+						"client_authentication": "body",
+						"clientSecret": "",
+						"authUrl": "http://127.0.0.1:8000/o/authorize/",
+						"accessTokenUrl": "http://127.0.0.1:8000/o/token/",
+						"scope": "read:messages send:messages manage:conversations",
+						"clientId": "{{msg_django_app_id}}",
+						"redirect_uri": "https://oauth.pstmn.io/v1/callback",
+						"grant_type": "authorization_code_with_pkce",
+						"headerPrefix": "Bearer"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"participants\": [\n        \"1\", \n        \"2\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/conversations/"
+			},
+			"response": [
+				{
+					"name": "response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"participants\": [\n        \"1\", \n        \"2\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/conversations/"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 27 Jul 2025 18:01:41 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, origin"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "193"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"conversation_id\": 16,\n    \"participants\": [\n        2,\n        1\n    ],\n    \"participants_count\": 2,\n    \"last_message_preview\": \"No messages yet\",\n    \"created_at\": \"2025-07-27T18:01:41.482677Z\",\n    \"updated_at\": \"2025-07-27T18:01:41.482813Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "send_message",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"addTokenTo": "header",
+						"tokenName": "RSM_token",
+						"client_authentication": "body",
+						"clientSecret": "",
+						"authUrl": "http://127.0.0.1:8000/o/authorize/",
+						"accessTokenUrl": "http://127.0.0.1:8000/o/token/",
+						"scope": "read:messages send:messages manage:conversations",
+						"clientId": "{{msg_django_app_id}}",
+						"redirect_uri": "https://oauth.pstmn.io/v1/callback",
+						"grant_type": "authorization_code_with_pkce",
+						"headerPrefix": "Bearer"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"conversation\": 1,\n   \"message_body\": \"Review this conversation and revert\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/messages/"
+			},
+			"response": [
+				{
+					"name": "response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"conversation\": 1,\n   \"message_body\": \"Review this conversation and revert\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/messages/"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 27 Jul 2025 18:04:01 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, origin"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "143"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message_id\": 10,\n    \"conversation\": 1,\n    \"message_body\": \"Review this conversation and revert\",\n    \"status\": \"sent\",\n    \"sent_at\": \"2025-07-27T18:04:01.456114Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "list_conversations",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"addTokenTo": "header",
+						"tokenName": "RSM_token",
+						"client_authentication": "body",
+						"clientSecret": "",
+						"authUrl": "http://127.0.0.1:8000/o/authorize/",
+						"accessTokenUrl": "http://127.0.0.1:8000/o/token/",
+						"scope": "read:messages send:messages manage:conversations",
+						"clientId": "{{msg_django_app_id}}",
+						"redirect_uri": "https://oauth.pstmn.io/v1/callback",
+						"grant_type": "authorization_code_with_pkce",
+						"headerPrefix": "Bearer"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/conversations/"
+			},
+			"response": [
+				{
+					"name": "response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/conversations/"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 27 Jul 2025 18:04:48 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, origin"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3164"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"count\": 16,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"conversation_id\": 1,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"Review this conversation and revert\",\n            \"created_at\": \"2025-07-26T01:38:10.410620Z\",\n            \"updated_at\": \"2025-07-26T01:38:10.410642Z\"\n        },\n        {\n            \"conversation_id\": 2,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-26T01:38:38.440035Z\",\n            \"updated_at\": \"2025-07-26T01:38:38.440049Z\"\n        },\n        {\n            \"conversation_id\": 3,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-26T01:59:00.290759Z\",\n            \"updated_at\": \"2025-07-26T01:59:00.290777Z\"\n        },\n        {\n            \"conversation_id\": 4,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-26T02:01:02.338350Z\",\n            \"updated_at\": \"2025-07-26T02:01:02.338384Z\"\n        },\n        {\n            \"conversation_id\": 5,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-26T02:15:14.827089Z\",\n            \"updated_at\": \"2025-07-26T02:15:14.827123Z\"\n        },\n        {\n            \"conversation_id\": 6,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-26T02:34:39.592894Z\",\n            \"updated_at\": \"2025-07-26T02:34:39.592961Z\"\n        },\n        {\n            \"conversation_id\": 7,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-27T08:23:57.463803Z\",\n            \"updated_at\": \"2025-07-27T08:23:57.463837Z\"\n        },\n        {\n            \"conversation_id\": 8,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-27T08:25:04.051764Z\",\n            \"updated_at\": \"2025-07-27T08:25:04.051782Z\"\n        },\n        {\n            \"conversation_id\": 9,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-27T08:25:15.629448Z\",\n            \"updated_at\": \"2025-07-27T08:25:15.629463Z\"\n        },\n        {\n            \"conversation_id\": 10,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-27T10:13:24.928622Z\",\n            \"updated_at\": \"2025-07-27T10:13:24.928648Z\"\n        },\n        {\n            \"conversation_id\": 11,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-27T10:19:05.372532Z\",\n            \"updated_at\": \"2025-07-27T10:19:05.372563Z\"\n        },\n        {\n            \"conversation_id\": 12,\n            \"participants\": [\n                1\n            ],\n            \"participants_count\": 1,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-27T10:24:30.834076Z\",\n            \"updated_at\": \"2025-07-27T10:24:30.834092Z\"\n        },\n        {\n            \"conversation_id\": 13,\n            \"participants\": [\n                2,\n                1\n            ],\n            \"participants_count\": 2,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-27T10:56:38.967369Z\",\n            \"updated_at\": \"2025-07-27T10:56:38.967953Z\"\n        },\n        {\n            \"conversation_id\": 14,\n            \"participants\": [\n                2,\n                1\n            ],\n            \"participants_count\": 2,\n            \"last_message_preview\": \"Message Sample to start conversation\",\n            \"created_at\": \"2025-07-27T10:56:45.652500Z\",\n            \"updated_at\": \"2025-07-27T10:56:45.652543Z\"\n        },\n        {\n            \"conversation_id\": 15,\n            \"participants\": [\n                2,\n                1\n            ],\n            \"participants_count\": 2,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-27T18:01:19.483506Z\",\n            \"updated_at\": \"2025-07-27T18:01:19.483539Z\"\n        },\n        {\n            \"conversation_id\": 16,\n            \"participants\": [\n                2,\n                1\n            ],\n            \"participants_count\": 2,\n            \"last_message_preview\": \"No messages yet\",\n            \"created_at\": \"2025-07-27T18:01:41.482677Z\",\n            \"updated_at\": \"2025-07-27T18:01:41.482813Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "create_user",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"addTokenTo": "header",
+						"tokenName": "RSM_token",
+						"client_authentication": "body",
+						"clientSecret": "",
+						"authUrl": "http://127.0.0.1:8000/o/authorize/",
+						"accessTokenUrl": "http://127.0.0.1:8000/o/token/",
+						"scope": "read:messages send:messages manage:conversations",
+						"clientId": "{{msg_django_app_id}}",
+						"redirect_uri": "https://oauth.pstmn.io/v1/callback",
+						"grant_type": "authorization_code_with_pkce",
+						"headerPrefix": "Bearer"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Joe\",\n    \"last_name\": \"Unique\",\n    \"email\": \"Uniquejoe@yahoo.com\",\n    \"password\": \"password\",\n    \"phone_number\":\"0901234521\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/users/"
+			},
+			"response": [
+				{
+					"name": "response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Joe\",\n    \"last_name\": \"Unique\",\n    \"email\": \"Uniquejoe@yahoo.com\",\n    \"password\": \"password\",\n    \"phone_number\":\"0901234521\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/users/"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 27 Jul 2025 18:07:16 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, origin"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "326"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user_id\": 3,\n    \"password\": \"password\",\n    \"last_login\": null,\n    \"is_superuser\": false,\n    \"first_name\": \"Joe\",\n    \"last_name\": \"Unique\",\n    \"email\": \"Uniquejoe@yahoo.com\",\n    \"phone_number\": \"0901234521\",\n    \"is_staff\": false,\n    \"is_active\": true,\n    \"created_at\": \"2025-07-27T18:07:16.751746Z\",\n    \"updated_at\": \"2025-07-27T18:07:16.751763Z\",\n    \"groups\": [],\n    \"user_permissions\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "no_create_access",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": {
+						"addTokenTo": "header",
+						"tokenName": "RSM_token",
+						"client_authentication": "body",
+						"clientSecret": "",
+						"authUrl": "http://127.0.0.1:8000/o/authorize/",
+						"accessTokenUrl": "http://127.0.0.1:8000/o/token/",
+						"scope": "read:messages send:messages manage:conversations",
+						"clientId": "{{msg_django_app_id}}",
+						"redirect_uri": "https://oauth.pstmn.io/v1/callback",
+						"grant_type": "authorization_code_with_pkce",
+						"headerPrefix": "Bearer"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"participants\": [\n        \"1\", \n        \"2\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/conversations/"
+			},
+			"response": [
+				{
+					"name": "response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"participants\": [\n        \"1\", \n        \"2\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/conversations/"
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 27 Jul 2025 18:10:02 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.13.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, origin"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"You do not have permission to perform this action.\"\n}"
+				}
+			]
+		}
+	]
+}

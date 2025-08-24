@@ -1,19 +1,25 @@
 #!/bin/bash
 
-# Scale deployment to 3 replicas
-echo "Scaling messaging-app deployment to 3 replicas..."
-kubectl scale deployment messaging-app --replicas=3
+DJANGO_APP_DEPLOYMENT="django-app-deployment"
 
-# Verify pods
-echo "Checking pods..."
-kubectl get pods -l app=messaging-app
+echo "scale and monitoring script"
 
-# Load testing using wrk (assumes wrk is installed and service is exposed internally)
-# Replace <service-ip> with the actual ClusterIP or NodePort/Ingress endpoint
-SERVICE_IP=$(minikube service messaging-app-service --url | head -n 1)
-echo "Running wrk load test on $SERVICE_IP..."
-wrk -t2 -c10 -d10s $SERVICE_IP
+# scale the deployment to 3 replicas
+kubectl scale deployment/$DJANGO_APP_DEPLOYMENT --replicas=3
 
-# Monitor resource usage
-echo "Monitoring resource usage..."
-kubectl top pods
+if [ $? -ne 0 ]; then
+    echo "Failed to scale the deployment"
+    exit 1
+fi
+
+# wait for 15 seconds
+sleep 15
+
+# get the pods
+kubectl get pods -l app=django-messaging-app
+
+# run wrk to test the deployment
+wrk -t4 -c100 -d10s http://localhost:8000
+
+# get the top pods
+kubectl top pod -l app=django-messaging-app

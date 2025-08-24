@@ -1,0 +1,46 @@
+name: Update Root README
+
+on:
+  push:
+    paths:
+      - 'python-generators-0x00/README.md'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    
+    - name: Copy README content
+      run: |
+        if [ -f "python-generators-0x00/README.md" ]; then
+          cp python-generators-0x00/README.md README.md
+          echo "README content copied successfully"
+        else
+          echo "Source README file not found"
+          exit 1
+        fi
+    
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if git diff --quiet README.md; then
+          echo "changes=false" >> $GITHUB_OUTPUT
+        else
+          echo "changes=true" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.changes == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md
+        git commit -m "Auto-update root README from python-generators-0x00/README.md"
+        git push origin HEAD:${{ github.ref }}

@@ -1,0 +1,111 @@
+INFO 2025-07-27 09:49:43,575 views 61273 6191034368 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 09:49:43,584 views 61273 6191034368 [ConversationViewSet] Token scopes: read:messages send:messages manage:conversations
+INFO 2025-07-27 09:49:43,584 views 61273 6191034368 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 09:49:43,584 views 61273 6191034368 [ConversationViewSet] Token is expired: False
+ERROR 2025-07-27 09:49:43,584 views 61273 6191034368 [ConversationViewSet] Error getting required scopes: 'function' object has no attribute 'view_class'
+INFO 2025-07-27 09:50:09,878 views 61826 6133919744 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 09:50:09,884 views 61826 6133919744 [ConversationViewSet] Token scopes: read:messages send:messages manage:conversations
+INFO 2025-07-27 09:50:09,884 views 61826 6133919744 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 09:50:09,884 views 61826 6133919744 [ConversationViewSet] Token is expired: False
+ERROR 2025-07-27 09:50:09,884 views 61826 6133919744 [ConversationViewSet] Error getting required scopes: 'function' object has no attribute 'view_class'
+INFO 2025-07-27 09:52:06,736 views 63443 6125645824 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 09:52:06,745 views 63443 6125645824 [ConversationViewSet] Token scopes: read:messages send:messages manage:conversations
+INFO 2025-07-27 09:52:06,745 views 63443 6125645824 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 09:52:06,745 views 63443 6125645824 [ConversationViewSet] Token is expired: False
+ERROR 2025-07-27 09:52:06,745 views 63443 6125645824 [ConversationViewSet] Error getting required scopes: 'function' object has no attribute 'view_class'
+INFO 2025-07-27 09:57:04,513 views 68099 6163214336 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 09:57:04,526 views 68099 6163214336 [ConversationViewSet] Token scopes: read:messages send:messages manage:conversations
+INFO 2025-07-27 09:57:04,526 views 68099 6163214336 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 09:57:04,526 views 68099 6163214336 [ConversationViewSet] Token is expired: False
+INFO 2025-07-27 09:57:04,526 views 68099 6163214336 [ConversationViewSet] Required scopes for POST: ['manage:conversations']
+INFO 2025-07-27 09:57:04,527 views 68099 6163214336 [ConversationViewSet] All required scopes: {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 09:57:57,792 views 68905 6203977728 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 09:57:57,801 views 68905 6203977728 [ConversationViewSet] Token: mOL8srj68GJVM48rXvX8vB4UuwPptV
+INFO 2025-07-27 09:57:57,801 views 68905 6203977728 [ConversationViewSet] Token scopes: read:messages send:messages manage:conversations
+INFO 2025-07-27 09:57:57,801 views 68905 6203977728 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 09:57:57,801 views 68905 6203977728 [ConversationViewSet] Token is expired: False
+INFO 2025-07-27 09:57:57,801 views 68905 6203977728 [ConversationViewSet] Required scopes for POST: ['manage:conversations']
+INFO 2025-07-27 09:57:57,801 views 68905 6203977728 [ConversationViewSet] All required scopes: {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:03:51,374 views 73535 6129643520 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 10:03:51,383 views 73535 6129643520 [ConversationViewSet] Token: UrG1gevgipZd3OikvfkenWeUiLKzjv
+INFO 2025-07-27 10:03:51,383 views 73535 6129643520 [ConversationViewSet] Token scopes: read:messages manage:conversations
+INFO 2025-07-27 10:03:51,383 views 73535 6129643520 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 10:03:51,383 views 73535 6129643520 [ConversationViewSet] Token is expired: False
+INFO 2025-07-27 10:03:51,383 views 73535 6129643520 [ConversationViewSet] Required scopes for POST: ['manage:conversations']
+INFO 2025-07-27 10:03:51,383 views 73535 6129643520 [ConversationViewSet] All required scopes: {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:06:01,627 views 76270 6160723968 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 10:06:01,639 views 76270 6160723968 [ConversationViewSet] Token: UrG1gevgipZd3OikvfkenWeUiLKzjv
+INFO 2025-07-27 10:06:01,639 views 76270 6160723968 [ConversationViewSet] Token scopes: read:messages manage:conversations
+INFO 2025-07-27 10:06:01,639 views 76270 6160723968 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 10:06:01,639 views 76270 6160723968 [ConversationViewSet] Token is expired: False
+INFO 2025-07-27 10:06:01,639 views 76270 6160723968 [ConversationViewSet] Required scopes for POST: ['manage:conversations']
+INFO 2025-07-27 10:06:01,639 views 76270 6160723968 [ConversationViewSet] All required scopes: {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:08:19,838 views 78197 6159396864 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 10:08:19,846 views 78197 6159396864 [ConversationViewSet] Token: UrG1gevgipZd3OikvfkenWeUiLKzjv
+INFO 2025-07-27 10:08:19,846 views 78197 6159396864 [ConversationViewSet] Token scopes: read:messages manage:conversations
+INFO 2025-07-27 10:08:19,846 views 78197 6159396864 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 10:08:19,846 views 78197 6159396864 [ConversationViewSet] Token is expired: False
+INFO 2025-07-27 10:08:19,846 views 78197 6159396864 [ConversationViewSet] Required scopes for POST: ['manage:conversations']
+INFO 2025-07-27 10:08:19,846 views 78197 6159396864 [ConversationViewSet] All required scopes: {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:08:19,846 views 78197 6159396864 [ConversationViewSet] token.is_valid(['manage:conversations']): True
+INFO 2025-07-27 10:08:19,846 views 78197 6159396864 [ConversationViewSet] TokenHasScope receives: required_scopes = {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:09:08,410 views 79132 6197293056 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 10:09:08,416 views 79132 6197293056 [ConversationViewSet] Token: UrG1gevgipZd3OikvfkenWeUiLKzjv
+INFO 2025-07-27 10:09:08,416 views 79132 6197293056 [ConversationViewSet] Token scopes: read:messages manage:conversations
+INFO 2025-07-27 10:09:08,416 views 79132 6197293056 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 10:09:08,416 views 79132 6197293056 [ConversationViewSet] Token is expired: False
+INFO 2025-07-27 10:09:08,416 views 79132 6197293056 [ConversationViewSet] Required scopes for POST: ['manage:conversations']
+INFO 2025-07-27 10:09:08,416 views 79132 6197293056 [ConversationViewSet] All required scopes: {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:09:08,416 views 79132 6197293056 [ConversationViewSet] token.is_valid(['manage:conversations']): True
+INFO 2025-07-27 10:09:08,416 views 79132 6197293056 [ConversationViewSet] TokenHasScope receives: required_scopes = {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:10:04,398 views 79974 6161149952 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 10:10:04,410 views 79974 6161149952 [ConversationViewSet] Token: UrG1gevgipZd3OikvfkenWeUiLKzjv
+INFO 2025-07-27 10:10:04,410 views 79974 6161149952 [ConversationViewSet] Token scopes: read:messages manage:conversations
+INFO 2025-07-27 10:10:04,410 views 79974 6161149952 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 10:10:04,410 views 79974 6161149952 [ConversationViewSet] Token is expired: False
+INFO 2025-07-27 10:10:04,410 views 79974 6161149952 [ConversationViewSet] Required scopes for POST: ['manage:conversations']
+INFO 2025-07-27 10:10:04,410 views 79974 6161149952 [ConversationViewSet] All required scopes: {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:10:04,410 views 79974 6161149952 [ConversationViewSet] token.is_valid(['manage:conversations']): True
+INFO 2025-07-27 10:10:04,410 views 79974 6161149952 [ConversationViewSet] TokenHasScope receives: required_scopes = {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:13:24,904 views 81861 6130970624 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 10:13:24,926 views 81861 6130970624 [ConversationViewSet] Token: UrG1gevgipZd3OikvfkenWeUiLKzjv
+INFO 2025-07-27 10:13:24,926 views 81861 6130970624 [ConversationViewSet] Token scopes: read:messages manage:conversations
+INFO 2025-07-27 10:13:24,927 views 81861 6130970624 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 10:13:24,927 views 81861 6130970624 [ConversationViewSet] Token is expired: False
+INFO 2025-07-27 10:13:24,927 views 81861 6130970624 [ConversationViewSet] Required scopes for POST: ['manage:conversations']
+INFO 2025-07-27 10:13:24,927 views 81861 6130970624 [ConversationViewSet] All required scopes: {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:13:24,927 views 81861 6130970624 [ConversationViewSet] token.is_valid(['manage:conversations']): True
+INFO 2025-07-27 10:13:24,927 views 81861 6130970624 [ConversationViewSet] TokenHasScope receives: required_scopes = {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:15:14,600 views 81861 6147796992 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 10:15:14,603 views 81861 6147796992 [ConversationViewSet] Token: kuiirYb3XBRAZqEM1qm63jXWY9Ij4V
+INFO 2025-07-27 10:15:14,603 views 81861 6147796992 [ConversationViewSet] Token scopes: read:messages
+INFO 2025-07-27 10:15:14,603 views 81861 6147796992 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 10:15:14,603 views 81861 6147796992 [ConversationViewSet] Token is expired: False
+INFO 2025-07-27 10:15:14,603 views 81861 6147796992 [ConversationViewSet] Required scopes for POST: ['manage:conversations']
+INFO 2025-07-27 10:15:14,603 views 81861 6147796992 [ConversationViewSet] All required scopes: {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:15:14,603 views 81861 6147796992 [ConversationViewSet] token.is_valid(['manage:conversations']): False
+INFO 2025-07-27 10:15:14,603 views 81861 6147796992 [ConversationViewSet] TokenHasScope receives: required_scopes = {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:19:05,347 views 81861 6164623360 [ConversationViewSet] HTTP Method: POST
+INFO 2025-07-27 10:19:05,370 views 81861 6164623360 [ConversationViewSet] Token: UrG1gevgipZd3OikvfkenWeUiLKzjv
+INFO 2025-07-27 10:19:05,370 views 81861 6164623360 [ConversationViewSet] Token scopes: read:messages manage:conversations
+INFO 2025-07-27 10:19:05,370 views 81861 6164623360 [ConversationViewSet] Token is valid: True
+INFO 2025-07-27 10:19:05,370 views 81861 6164623360 [ConversationViewSet] Token is expired: False
+INFO 2025-07-27 10:19:05,370 views 81861 6164623360 [ConversationViewSet] Required scopes for POST: ['manage:conversations']
+INFO 2025-07-27 10:19:05,370 views 81861 6164623360 [ConversationViewSet] All required scopes: {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:19:05,370 views 81861 6164623360 [ConversationViewSet] token.is_valid(['manage:conversations']): True
+INFO 2025-07-27 10:19:05,370 views 81861 6164623360 [ConversationViewSet] TokenHasScope receives: required_scopes = {'GET': ['read:messages'], 'POST': ['manage:conversations'], 'PUT': ['manage:conversations']}
+INFO 2025-07-27 10:23:35,142 views 89948 6124564480 [TestEndpoint] HTTP Method: GET
+WARNING 2025-07-27 10:23:35,142 views 89948 6124564480 [TestEndpoint] No token found in request
+INFO 2025-07-27 10:35:46,140 views 2472 6196670464 [1] Sending message to conversation: 1
+INFO 2025-07-27 10:38:03,112 views 4555 6158856192 [1] Sending message to conversation: 1
+INFO 2025-07-27 10:38:37,529 views 5067 6203944960 [1] Sending message to conversation: 1
+INFO 2025-07-27 10:39:48,233 views 6089 6121959424 [1] Sending message to conversation: 1
+INFO 2025-07-27 10:41:31,281 views 6089 6138785792 [1] Sending message to conversation: 1
+INFO 2025-07-27 10:41:39,840 views 6089 6138785792 [1] Sending message to conversation: 1
+INFO 2025-07-27 10:44:40,168 views 6089 6155612160 [1] Sending message to conversation: 1
+INFO 2025-07-27 11:00:16,623 views 6089 12985839616 [1] Sending message to conversation: 14
+INFO 2025-07-27 11:00:20,988 views 6089 12985839616 [1] Sending message to conversation: 14
+INFO 2025-07-27 11:05:24,375 views 6089 13002665984 [1] Sending message to conversation: 14
+INFO 2025-07-27 11:05:29,079 views 6089 13002665984 [1] Sending message to conversation: 14
+INFO 2025-07-27 18:03:34,048 views 80399 6215315456 [1] Sending message to conversation: 1
+INFO 2025-07-27 18:04:01,454 views 80399 6215315456 [1] Sending message to conversation: 1

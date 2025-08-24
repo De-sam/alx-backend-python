@@ -1,0 +1,84 @@
+name: Update Root README (Advanced)
+
+on:
+  push:
+    paths:
+      - 'python-generators-0x00/README.md'
+  workflow_dispatch:  # Allow manual trigger
+  schedule:
+    # Run daily at midnight UTC to ensure sync
+    - cron: '0 0 * * *'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for better diff detection
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Create Python script for README processing
+      run: |
+        cat > process_readme.py << 'EOF'
+        import os
+        import sys
+        from pathlib import Path
+        
+        def process_readme():
+            source_path = Path("python-generators-0x00/README.md")
+            target_path = Path("README.md")
+            
+            if not source_path.exists():
+                print(f"Error: Source file {source_path} not found")
+                sys.exit(1)
+            
+            # Read source content
+            with open(source_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Add a header to indicate this is auto-generated
+            header = "# ALX Python Tasks\n\n> **Note**: This README is automatically generated from `python-generators-0x00/README.md`\n\n---\n"
+            
+            # Write to target
+            with open(target_path, 'w', encoding='utf-8') as f:
+                f.write(header + content)
+            
+            print(f"Successfully updated {target_path} from {source_path}")
+        
+        if __name__ == "__main__":
+            process_readme()
+        EOF
+    
+    - name: Process README
+      run: python process_readme.py
+    
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if git diff --quiet README.md; then
+          echo "changes=false" >> $GITHUB_OUTPUT
+          echo "No changes detected in README.md"
+        else
+          echo "changes=true" >> $GITHUB_OUTPUT
+          echo "Changes detected in README.md"
+          git diff README.md
+        fi
+    
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.changes == 'true'
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add README.md
+        git commit -m " Auto-update root README from python-generators-0x00/README.md - Updated by GitHub Actions workflow - Source: python-generators-0x00/README.md - Triggered by: ${{ github.event_name }}"
+        git push 

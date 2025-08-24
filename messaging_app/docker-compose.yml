@@ -1,31 +1,43 @@
-version: "3.9"
+version: '3.8'
 
 services:
   web:
     build: .
-    container_name: messaging-web
     ports:
       - "8000:8000"
+    environment:
+      - DEBUG=True
+      - DJANGO_SETTINGS_MODULE=messaging_app.settings
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=messaging_app
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - STATIC_ROOT=/app/staticfiles
+      - STATIC_URL=/static/
     depends_on:
       - db
-    env_file:
-      - .env
+    restart: unless-stopped
     command: >
-      python3 manage.py runserver 0.0.0.0:8000
+      sh -c "python3 manage.py migrate &&
+             python3 manage.py collectstatic --noinput &&
+             python3 manage.py runserver 0.0.0.0:8000" && 
+             
 
   db:
-    image: mysql:8
-    container_name: messaging-db
-    restart: unless-stopped
+    image: mysql:8.0
     environment:
-      MYSQL_DATABASE: ${MYSQL_DB}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=messaging_app
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DB=messaging_app
     ports:
       - "3306:3306"
+    restart: unless-stopped
     volumes:
-      - mysql_data:/var/lib/mysql   # ✅ PERSIST DB FILES HERE
-
+      - db_data:/var/lib/mysql
 volumes:
-  mysql_data:                       # ✅ NAMED VOLUME (created by Docker)
+  db_data:
+  static_volume:
+  media_volume: 
